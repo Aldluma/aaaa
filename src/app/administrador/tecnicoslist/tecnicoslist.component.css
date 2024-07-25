@@ -1,0 +1,13 @@
+.bg-gray-700 {
+    /* Asegúrate de que el contenedor ocupe toda la altura de la ventana */
+    overflow: hidden;
+    min-height: 91.4vh;
+    /* Limita la altura del modal para evitar el scroll */
+    /* Oculta el scroll en el contenedor principal */
+}
+
+.overflow-auto {
+    overflow: auto;
+    /* Permite el scroll solo en el contenido interno que lo necesita */
+}
+

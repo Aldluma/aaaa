@@ -1,0 +1,89 @@
+<div class="max-w-6xl mx-auto pt-10 h-2/4">
+  <h1 class="text-3xl font-bold mb-6 text-center text-blue-100">Lista de Equipos para Mantenimiento Preventivo</h1>
+  <div class="overflow-x-auto">
+      <table class="min-w-full bg-gray-900 border border-gray-700 rounded-lg shadow-lg w-11/12 mx-auto text-sm">
+          <thead class="bg-gray-800">
+              <tr>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">Marca</th>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">Modelo</th>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">RAM</th>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">Procesador</th>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">Almacenamiento</th>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">Tipo</th>
+                  <th class="px-4 py-2 border-b text-center text-blue-100 font-medium">Acciones</th>
+              </tr>
+          </thead>
+          <tbody class="bg-gray-900">
+              @for (equipo of equipos2; track 'id'){
+                  <tr class="odd:bg-gray-800 even:bg-gray-900 hover:bg-gray-700 transition-colors text-xs text-gray-300">
+                      <td class="px-4 py-2 border-b break-words text-center">{{ equipo.marca }}</td>
+                      <td class="px-4 py-2 border-b break-words text-center">{{ equipo.modelo }}</td>
+                      <td class="px-4 py-2 border-b break-words text-center">RAM: {{ equipo.ram }}</td>
+                      <td class="px-4 py-2 border-b break-words text-center">{{ equipo.procesador }}</td>
+                      <td class="px-4 py-2 border-b break-words text-center">Almacenamiento: {{ equipo.almacenamiento }}</td>
+                      <td class="px-4 py-2 border-b break-words text-center">Tipo: {{ equipo.tipo == 1 ? 'Escritorio' : equipo.tipo == 2 ? 'Portátil' : '' }}</td>
+                      <td class="px-4 py-2 border-b break-words text-center">
+                          @if (equipo.estado_asignacion == 'Asignado') {
+                              <span class="text-red-500">Equipo asignado</span>
+                          }@else {
+                              <button (click)="openModal2(equipo)" class="text-blue-400 hover:text-blue-600">Asignar</button>
+                          }
+                      </td>
+                  </tr>
+              } @empty {
+                  <tr>
+                      <td colspan="7" class="w-full text-center text-gray-300 py-4">
+                          Aún no hay equipos registrados.
+                      </td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+<div id="modal-asignar2" [class.hidden]="!isModalOpen2" class="fixed bottom-4 right-4 z-50 mt-24">
+  <div class="bg-gray-900 rounded-lg shadow p-6 w-full max-w-sm">
+      <div class="flex justify-between items-center border-b pb-4 border-gray-700">
+          <h3 class="text-xl font-semibold text-blue-400">
+              Asignar Equipo
+          </h3>
+          <button (click)="closeModal2()" class="text-gray-500 hover:text-gray-400">
+              <i class="bi bi-x-lg w-6 h-6"></i>
+          </button>
+      </div>
+      <form [formGroup]="asignarquipo2" (ngSubmit)="asignarEquipo2()">
+          <div class="py-4">
+              <p class="text-gray-300 text-xs">¿A quién deseas asignar el equipo {{ equipoSeleccionado2?.marca }} {{ equipoSeleccionado2?.modelo }}?</p>
+              <input type="text" formControlName="id_equipo" id="id_equipo" class="text-gray-900 bg-gray-800 mt-2 w-full p-2 border border-gray-700 rounded-lg">
+
+              <label for="id_tecnico" class="block text-sm font-medium leading-6 text-gray-300">Selecciona un técnico</label>
+              <div class="mt-2">
+                  <select formControlName="id_tecnico" id="id_tecnico" class="shadow-sm bg-gray-800 border border-gray-700 text-gray-300 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                      <option value="" selected>--Selecciona un técnico--</option>
+                      @for (tecnico of tecnicos2; track 'id') {
+                          <option value="{{ tecnico.id }}">{{ tecnico.nombre }} {{ tecnico.apellidos }}</option>
+                      } @empty {
+                          <option value="" selected>No se encontraron técnicos</option>
+                      }
+                  </select>
+                  <div *ngIf="asignarquipo2.controls['id_tecnico'].invalid && asignarquipo2.controls['id_tecnico'].touched" class="text-red-500 text-sm mt-1">
+                      Selecciona un técnico
+                  </div>
+              </div>
+              <div class="mt-2">
+                  <label for="comentario" class="text-sm text-gray-300">Agrega comentarios adicionales</label>
+                  <textarea formControlName="comentario" id="comentario" class="shadow-sm text-xs text-gray-900 border-gray-700 mt-2 w-full bg-gray-800 p-2 rounded-lg"></textarea>
+                  <div *ngIf="asignarquipo2.controls['comentario'].invalid && asignarquipo2.controls['comentario'].touched" class="text-red-500 text-sm mt-1">
+                      Agrega un comentario
+                  </div>
+              </div>
+          </div>
+          <div class="flex justify-end space-x-4 pt-4 border-t border-gray-700">
+              <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Asignar</button>
+              <p (click)="closeModal2()" class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 hover:cursor-pointer">Cancelar</p>
+          </div>
+      </form>
+  </div>
+</div>

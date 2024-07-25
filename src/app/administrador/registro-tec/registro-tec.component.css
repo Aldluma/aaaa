@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Evita el desplazamiento adicional */
+}
+
+.background-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 91vh; /* Asegura que el contenedor cubra la altura de la ventana */
+  width: 100vw; /* Asegura que el contenedor cubra el ancho de la ventana */
+  background-image: url('https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+  background-position: center;
+  background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+.form-container {
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden; /* Evita el desbordamiento del formulario */
+}
+
+.bg-sky-500 {
+  background-color: #b5dceccc;
+}

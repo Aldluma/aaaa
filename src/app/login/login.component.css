@@ -1,0 +1,26 @@
+/* login.component.css */
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://th.bing.com/th/id/R.0b979877a3a37dce48a5f4db4823d2ea?rik=gfJSsATeEFohvg&riu=http%3a%2f%2facsolutions.mx%2fwp-content%2fuploads%2f2016%2f04%2fmantenimiento.jpg&ehk=tX7uikAt61jlgUyzSOSG9wUIj%2bwxdRHxUB6l5Qa4chE%3d&risl=&pid=ImgRaw&r=0') no-repeat center center;
+    background-size: cover;
+  }
+  
+  .login-container {
+    background-color: rgba(255, 255, 255, 0.844); /* Transparente */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .alert {
+    color: #fa5151; /* Azul oscuro */
+    
+  }
+  

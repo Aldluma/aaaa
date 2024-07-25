@@ -1,0 +1,7 @@
+.bg-image {
+    background: linear-gradient(to right, #1a202c, #2d3748); /* Degradado de color oscuro de izquierda a derecha */
+    width: 100%; /* Asegúrate de que el contenedor ocupe todo el ancho */
+    min-height: 91.2vh; /* Asegúrate de que el contenedor tenga al menos el alto de la pantalla */
+    position: relative; /* Asegura que el contenedor tenga una posición adecuada para el contenido superpuesto */
+    overflow: hidden; /* Evita que el contenido se desborde del contenedor */
+  }

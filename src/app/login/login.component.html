@@ -1,0 +1,47 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img class="mx-auto h-20 w-auto" src="assets/logo.png" alt="imagen random">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Inicia sesión</h2>
+  </div>
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form [formGroup]="Loginform" class="space-y-6" (ngSubmit)="login()">
+      <div>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo electrónico</label>
+        <div class="relative mt-2">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <i class="fas fa-envelope text-black"></i> <!-- Icono de Font Awesome en color negro -->
+          </div>
+          <input formControlName="email" type="email" id="email" placeholder="alguien@example.com"
+            class="block w-full pl-10 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div *ngIf="Loginform.controls['email'].invalid && Loginform.controls['email'].touched"
+            class="mt-1 text-red-600 text-sm">
+            El Correo electrónico es requerido.
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium leading-2 text-gray-900">Contraseña</label>
+
+      <div class="relative mt-2">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <i class="fas fa-lock text-black"></i> 
+        </div>
+        <input formControlName="password" type="password" id="password" placeholder="Contraseña"
+          class="block w-full pl-10 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        <!-- Mensaje de error -->
+        <div *ngIf="Loginform.controls['password'].invalid && Loginform.controls['password'].touched"
+          class="mt-1 text-red-600 text-sm">
+          {{ Loginform.controls['password'].hasError('required') ? 'La contraseña es requerida.' : 'La contraseña debe tener al menos 8 caracteres.' }}
+        </div>
+      </div>
+    </div>
+      <div>
+        <button type="submit"
+          class="flex w-full justify-center rounded-md bg-cyan-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          [disabled]="Loginform.invalid">Inicia sesión</button>
+      </div>
+      <a href="" [routerLink]="['/Recoverpass']">Olvidaste tu contraseña</a>
+    </form>
+  </div>
+</div>
